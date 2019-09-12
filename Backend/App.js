@@ -40,3 +40,5 @@ function myFunction(maxNumber){
   
     return primes;
   }
+
+  module.exports.myFunction=myFunction;

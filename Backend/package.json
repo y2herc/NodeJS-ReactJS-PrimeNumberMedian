@@ -1,0 +1,21 @@
+{
+  "name": "tbbackend",
+  "version": "1.0.0",
+  "description": "Touch Bistro Backend",
+  "main": "App.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
+    "express": "^4.17.1",
+    "multer": "^1.4.2"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Hassan Bokhari",
+  "license": "ISC"
+}
