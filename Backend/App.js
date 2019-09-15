@@ -4,7 +4,7 @@ var app = express();
 app.get('/primeNumber/:Num', function (req, res) {
    
   var testing=parseInt(req.params.Num);
-  var results=myFunction((testing));
+  var results=primeNumbers((testing));
   console.log(results);
   res.send({ result: results });
 
@@ -17,7 +17,7 @@ var server = app.listen(8081, function () {
    console.log("Example app listening at http://%s:%s", host, port)
 })
 
-function myFunction(maxNumber){
+function primeNumbers(maxNumber){
 
     const isPrime = new Array(maxNumber + 1).fill(true);
     isPrime[0] = false;
@@ -41,4 +41,4 @@ function myFunction(maxNumber){
     return primes;
   }
 
-  module.exports.myFunction=myFunction;
+  module.exports.primeNumbers=primeNumbers;
