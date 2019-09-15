@@ -3,8 +3,8 @@ var app = express();
 
 app.get('/primeNumber/:Num', function (req, res) {
    
-  var temp=parseInt(req.params.Num);
-  var results=primeNumbers(temp);
+  var inputNumber=parseInt(req.params.Num);
+  var results=median(primeNumbers(inputNumber));
   res.send({ result: results });
 
 })
@@ -37,22 +37,22 @@ function primeNumbers(maxNumber){
     }
   }
   
-  return median(primes);
+  return primes;
 }
 
 function median(numbers) {
   var median = [], numsLen = numbers.length;
 
   if (
-      numsLen % 2 === 0 // is even
+      numsLen % 2 === 0 
   ) {
-      // average of two middle numbers
+    
       var val1 = ([numsLen / 2 - 1]) ;
       var val2=parseInt(val1)+1;
       median=[numbers[val1],numbers[(val2)]];
 
-  } else { // is odd
-      // middle number only
+  } else { 
+
       var val=(numsLen - 1) / 2;
       median = numbers[val];
   }
@@ -60,3 +60,4 @@ function median(numbers) {
   return median;
 }
 module.exports.primeNumbers=primeNumbers;
+module.exports.median=median;
