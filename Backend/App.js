@@ -2,14 +2,14 @@ var express = require('express');
 var app = express();
 
 app.get('/primeNumber/:Num', function (req, res) {
-   
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
   var inputNumber=parseInt(req.params.Num);
   var results=median(primeNumbers(inputNumber));
   res.send({ result: results });
 
 })
 
-var server = app.listen(8081, function () {
+app.listen(8081, function () {
 
    console.log("Server listening" );
 })

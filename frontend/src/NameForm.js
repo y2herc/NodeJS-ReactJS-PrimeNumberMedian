@@ -1,11 +1,5 @@
 import React from 'react';
 
-const initialState = {
-  inputNumber: '',
-  inputNumberError:'',
-  result:''
-};
-
 export default class Form extends React.Component {
 
   constructor (props) {
@@ -13,15 +7,14 @@ export default class Form extends React.Component {
     this.state = {
       inputNumber: '',
       inputNumberError:'',
-      result:''
+      apiResults:[],
+      isLoaded: false
     }
   }
+
   handleChange = event => {
-    const isCheckbox = event.target.type === "checkbox";
     this.setState({
-      [event.target.name]: isCheckbox
-        ? event.target.checked
-        : event.target.value
+      [event.target.name]: event.target.value
     });
   };
   
@@ -29,7 +22,7 @@ export default class Form extends React.Component {
     let inputNumberError = '';
     let temp=parseInt(this.state.inputNumber,10);
 
-    if ((temp>=100)) {
+    if ((temp>=10000)) {
       inputNumberError = 'Input cannot exceed 100';
     }
 
@@ -44,28 +37,47 @@ export default class Form extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     const isValid = this.validate();
+    
     if (isValid) {
       console.log(this.state);
-      // clear form
-      this.setState(initialState);
-     }
+    
+      fetch('http://localhost:8081/primeNumber/'+this.state.inputNumber)
+      .then(res=>res.json())
+      .then(json=>{
+        this.setState({
+          isLoaded:true,
+          apiResults: json.result,
+        })
+        console.log(json);
+    })
+    .catch(() => console.log("Can’t access response. Blocked by browser?"))
+    console.log("fetch complete")
+    console.log(this.state);
+  }
   };
 
 	render() {
-  	return (
-      <form onSubmit={this.handleSubmit}>
+    const {inputNumber,apiResults}=this.state;
+    
+    return (
+      <form onSubmit={this.handleSubmit} align="center"
+      style={{ fontSize: 14 }}>
         <div>Please enter a Number</div>
         <input
-          name="inputNumber" 
+          name="inputNumber"
+          value={inputNumber} 
           type="text"
           pattern="[0-9]*" 
           placeholder="Enter Prime Number" 
           required
           onChange={this.handleChange}
         />
-          <div style={{ fontSize: 12, color: "red" }}>
+        <div style={{ fontSize: 12, color: "red" }}>
               {this.state.inputNumberError}</div>
         <button type="submit">submit</button>
+        <div>
+          Result: {apiResults.join()}
+        </div>
     	</form>
     );
   }
