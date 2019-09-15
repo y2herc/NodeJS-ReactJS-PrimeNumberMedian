@@ -29,7 +29,7 @@ export default class Form extends React.Component {
     let inputNumberError = '';
     let temp=parseInt(this.state.inputNumber,10);
 
-    if (!(temp<100)) {
+    if ((temp>=100)) {
       inputNumberError = 'Input cannot exceed 100';
     }
 
@@ -43,8 +43,7 @@ export default class Form extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log("input"+this.state.inputNumber);
-   const isValid = this.validate();
+    const isValid = this.validate();
     if (isValid) {
       console.log(this.state);
       // clear form
