@@ -75,9 +75,9 @@ export default class Form extends React.Component {
         <div style={{ fontSize: 12, color: "red" }}>
               {this.state.inputNumberError}</div>
         <button type="submit">submit</button>
-        <div>
+        <p>
          Result:{JSON.stringify(apiResults,null,2)}
-        </div>
+        </p>
     	</form>
     );
   }
