@@ -1,4 +1,3 @@
-App URL: localhost:8081
 API URL: http://localhost:8081/primeNumber/{Any Number}
 
 This API takes get requests and returns results as string 
