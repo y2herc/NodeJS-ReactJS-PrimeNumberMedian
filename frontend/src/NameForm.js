@@ -76,10 +76,9 @@ export default class Form extends React.Component {
               {this.state.inputNumberError}</div>
         <button type="submit">submit</button>
         <div>
-          Result: {apiResults.join()}
+         Result:{JSON.stringify(apiResults,null,2)}
         </div>
     	</form>
     );
   }
 }
-
