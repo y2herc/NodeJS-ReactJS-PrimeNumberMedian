@@ -23,7 +23,7 @@ export default class Form extends React.Component {
     let temp=parseInt(this.state.inputNumber,10);
 
     if ((temp>=10000)) {
-      inputNumberError = 'Input cannot exceed 100';
+      inputNumberError = 'Input cannot exceed 10000';
     }
 
     if (inputNumberError) {
