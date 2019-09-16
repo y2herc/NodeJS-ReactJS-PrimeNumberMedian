@@ -8,5 +8,9 @@ The frontend contains a validated input within a Form that takes the input and s
 
 You can find further instructions as to how to run the apps under each individual Readme.md within their folders. 
 
+Node:v8.9.4
+NPM :5.6.0
+
+
 Regards, 
 Hassan Bokhari
