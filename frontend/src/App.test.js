@@ -19,12 +19,20 @@ describe('Render component Tests', () => {
 });
 
 describe('User Interaction Tests', () => {
+  
   it('Start with no Resulsts', () => {
     const wrapper = shallow(<Form />);
     const text = wrapper.find('p').text();
     expect(text).toEqual('Result:[]');
   });
 
+  it('Input'),()=>{
+    const wrapper = shallow(<Form />);
+    const input = wrapper.find('input').text();
+    input.simulate('change', { target: { value: '10' } })
+    expect(input).toEqual('10');
+    
+  };
   it('Submit Value', () => {
     const wrapper = mount(<Form>submit</Form>);
     const button = wrapper.find('button');
