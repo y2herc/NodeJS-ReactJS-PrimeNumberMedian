@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { shallow } from 'enzyme';
+import { shallow,mount } from 'enzyme';
 
 import App from './App';
 import Form from './NameForm'
@@ -26,18 +26,11 @@ describe('User Interaction Tests', () => {
   });
 
   it('Submit Value', () => {
-    const onSubmit = sinon.spy();
-    const wrapper = mount(
-      <form onSubmit={onSubmit} />
-    );
+    const wrapper = mount(<Form>submit</Form>);
     const button = wrapper.find('button');
-    
-//    const wrapper = shallow(<Form />);
-//    const form=wrapper.find('form');
-    const inputField=wrapper.find('input');
-    inputField.simulate('change', {target: {value: 101}})
-    button.simulate('submit');
-    const text = wrapper.find('p').text();
-    expect(text).toEqual('Result:[ 41, 43 ]');
-  });
+    expect(button).toHaveLength(1);
+    expect(button.prop('type')).toEqual('submit');
+    expect(button.text()).toEqual('submit');
+});
+
 });
