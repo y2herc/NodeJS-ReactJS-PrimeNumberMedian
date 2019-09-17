@@ -1,4 +1,5 @@
 import React from 'react';
+import './NameForm.css';
 
 export default class Form extends React.Component {
 
@@ -22,7 +23,7 @@ export default class Form extends React.Component {
     let inputNumberError = '';
     let temp=parseInt(this.state.inputNumber,10);
 
-    if ((temp>=10000)) {
+    if ((temp>10000)) {
       inputNumberError = 'Input cannot exceed 10000';
     }
 
@@ -50,9 +51,8 @@ export default class Form extends React.Component {
         })
         console.log(json);
     })
-    .catch(() => console.log("Can’t access response. Blocked by browser?"))
+    .catch(() => console.log("Can’t access response. Check API"))
     console.log("fetch complete")
-    console.log(this.state);
   }
   };
 
@@ -60,8 +60,7 @@ export default class Form extends React.Component {
     const {inputNumber,apiResults}=this.state;
     
     return (
-      <form onSubmit={this.handleSubmit} align="center"
-      style={{ fontSize: 14 }}>
+      <form onSubmit={this.handleSubmit} >
         <div>Please enter a Number</div>
         <input
           name="inputNumber"
@@ -72,13 +71,13 @@ export default class Form extends React.Component {
           required
           onChange={this.handleChange}
         />
-        <div style={{ fontSize: 12, color: "red" }}>
-              {this.state.inputNumberError}</div>
+        <div style={{ fontSize: 13 , color: "red" }}>{this.state.inputNumberError}</div>
         <button type="submit">submit</button>
         <p>
          Result:{JSON.stringify(apiResults,null,2)}
         </p>
     	</form>
+
     );
   }
 }
